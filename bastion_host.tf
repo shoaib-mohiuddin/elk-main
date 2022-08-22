@@ -4,15 +4,16 @@ resource "aws_instance" "bastion_host" {
 
   vpc_security_group_ids = [aws_security_group.bastion_sg.id]
 
-  #key_name = "_"
+  key_name = "ta-lab"
   subnet_id = data.aws_subnet.kibana_public.id
+  associate_public_ip_address = true
 
   tags = {
     Name = "Bastion"
   }
 }
 
-resource "aws_eip" "bastion_host_ip" {
-  instance = aws_instance.bastion_host.id
-  vpc = true
-}
+# resource "aws_eip" "bastion_host_ip" {
+#   instance = aws_instance.bastion_host.id
+#   vpc = true
+# }

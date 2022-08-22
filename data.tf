@@ -8,15 +8,45 @@ data "aws_ami" "ubuntu" { # for bastion host
 
   owners = ["099720109477"]
 }
-data "aws_ami" "_" {
+data "aws_ami" "ami_elasticsearch" {
   most_recent = true
 
   filter {
     name   = "tag:Name"
-    values = ["_"]
+    values = ["ami-elasticsearch"]
   }
 
-  owners = ["_"]
+  owners = [var.owner]
+}
+data "aws_ami" "ami_logstash" {
+  most_recent = true
+
+  filter {
+    name   = "tag:Name"
+    values = ["ami-logstash"]
+  }
+
+  owners = [var.owner]
+}
+data "aws_ami" "ami_kibana" {
+  most_recent = true
+
+  filter {
+    name   = "tag:Name"
+    values = ["ami-kibana"]
+  }
+
+  owners = [var.owner]
+}
+data "aws_ami" "ami_filebeat" {
+  most_recent = true
+
+  filter {
+    name   = "tag:Name"
+    values = ["ami-filebeat"]
+  }
+
+  owners = [var.owner]
 }
 
 data "aws_vpc" "main_vpc" {
@@ -66,3 +96,11 @@ data "aws_subnet" "app_private_c" {
     values = ["AppSubnet-Private-c"]
   }
 }
+
+# data "aws_security_group" "bastion_sg" {
+
+#   filter {
+#     name   = "tag:Name"
+#     values = ["bastion-sg"]
+#   }
+# }

@@ -1,5 +1,5 @@
-resource "aws_security_group" "packer_ami" {
-  name        = "packer-ami-sg"
+resource "aws_security_group" "packer_sg" {
+  name        = "packer-sg"
   description = "Allow ansible inbound traffic"
   vpc_id      = data.aws_vpc.main_vpc.id
 
@@ -20,6 +20,6 @@ resource "aws_security_group" "packer_ami" {
   }
 
   tags = {
-    Name = "packer-ami"
+    Name = "packer-sg"
   }
 }

@@ -1,5 +1,5 @@
-resource "aws_security_group" "deme_sg" {
-  name        = "elasticsearch-sg"
+resource "aws_security_group" "demo_sg" {
+  name        = "demo-sg"
   description = "Allow connection for Demo servers"
   vpc_id      = data.aws_vpc.main_vpc.id
 
@@ -8,7 +8,7 @@ resource "aws_security_group" "deme_sg" {
     from_port        = 22
     to_port          = 22
     protocol         = "tcp"
-    cidr_blocks      = [aws_security_group.bastion_sg.id]
+    cidr_blocks      = ["0.0.0.0/0"]
   }
 
   ingress {
@@ -16,7 +16,7 @@ resource "aws_security_group" "deme_sg" {
     from_port        = 5044
     to_port          = 5044
     protocol         = "tcp"
-    cidr_blocks      = [aws_security_group.logstash_sg.id]
+    cidr_blocks      = ["0.0.0.0/0"]
   }
 
   egress {
@@ -28,6 +28,6 @@ resource "aws_security_group" "deme_sg" {
   }
 
   tags = {
-    Name = "logstash-sg"
+    Name = "demo-sg"
   }
 }

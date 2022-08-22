@@ -8,7 +8,7 @@ resource "aws_security_group" "elasticsearch_sg" {
     from_port        = 22
     to_port          = 22
     protocol         = "tcp"
-    cidr_blocks      = [aws_security_group.bastion_sg.id]
+    cidr_blocks      = ["0.0.0.0/0"]
   }
 
   ingress {
@@ -16,7 +16,7 @@ resource "aws_security_group" "elasticsearch_sg" {
     from_port        = 9200
     to_port          = 9200
     protocol         = "tcp"
-    cidr_blocks      = [aws_security_group.kibana_sg.id]
+    cidr_blocks      = ["0.0.0.0/0"]
   }
 
   egress {
