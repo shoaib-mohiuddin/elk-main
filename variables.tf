@@ -1,5 +1,5 @@
 variable "owner" {
-  description = "Owner of the AMI"
+  description = "Owner Id of the AMI"
   type        = string
 }
 
